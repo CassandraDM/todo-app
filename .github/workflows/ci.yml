@@ -3,7 +3,7 @@ on: push
 jobs:
   test:
     timeout-minutes: 60
-    runs-on: unbuntu-latest
+    runs-on: ubuntu-latest
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
@@ -26,7 +26,7 @@ jobs:
           path: playwright-report/
           retention-days: 30
   build:
-    runs-on: unbuntu-latest
+    runs-on: ubuntu-latest
     needs: test
     steps:
       - run: echo "Building the project..." && exit 0
