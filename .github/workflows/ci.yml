@@ -16,5 +16,6 @@ jobs:
         run: npm run test:init
   build:
     runs-on: unbuntu-latest
+    needs: test
     steps:
       - run: echo "Building the project..." && exit 0
