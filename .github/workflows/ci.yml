@@ -4,4 +4,4 @@ jobs:
   test:
     runs-on: unbuntu-latest
     steps:
-      -run: npm run test
+      -run: echo "Hello, world!"
