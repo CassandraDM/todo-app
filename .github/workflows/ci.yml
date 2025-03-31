@@ -2,6 +2,7 @@ name: CI
 on: push
 jobs:
   test:
+    timeout-minutes: 60
     runs-on: unbuntu-latest
     steps:
       - name: Checkout code
@@ -13,7 +14,17 @@ jobs:
       - name: Install dependencies
         run: npm install
       - name: Run tests
-        run: npm run test:init
+        run: npm run test:unit
+      - name: Install Playwright browsers
+        run: npx playwright install --with-deps
+      - name: Run Playwright tests
+        run: npm run test:e2e
+      - uses: actions/upload-artifact@v4
+        if ${{ !cancelled() }}
+        with: 
+          name: playwright-report
+          path: playwright-report/
+          retention-days: 30
   build:
     runs-on: unbuntu-latest
     needs: test
